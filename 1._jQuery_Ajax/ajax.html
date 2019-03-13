@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learn Ajax</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <div id="gallery"></div>
+
+    <script>
+        for (var i = 0; i < 1; i++) {
+            $.ajax({
+                "url": "https://aws.random.cat/meow",
+                "type": "GET"
+            }).done(function (data) {
+                console.log("Data is here: ", data.file);
+                $("#gallery").append("<img src=" + data.file + ">");
+                $("img").width("200px");
+            });
+        }
+
+
+        // https://ron-swanson-quotes.herokuapp.com/v2/quotes
+
+        $.get("https://ron-swanson-quotes.herokuapp.com/v2/quotes");
+
+    </script>
+</body>
+</html>
