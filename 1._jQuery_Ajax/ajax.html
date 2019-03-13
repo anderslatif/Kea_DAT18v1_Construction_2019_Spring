@@ -6,7 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-
+    <div id="title"></div>
     <div id="gallery"></div>
 
     <script>
@@ -20,11 +20,12 @@
                 $("img").width("200px");
             });
         }
+        // cd dirname
+        // cd ..
 
-
-        // https://ron-swanson-quotes.herokuapp.com/v2/quotes
-
-        $.get("https://ron-swanson-quotes.herokuapp.com/v2/quotes");
+        $.get("https://ron-swanson-quotes.herokuapp.com/v2/quotes", function(result) {
+            $("#title").text(result[0]);
+        });
 
     </script>
 </body>
