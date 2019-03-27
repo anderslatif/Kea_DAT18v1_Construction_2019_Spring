@@ -1,6 +1,10 @@
+import java.io.FileOutputStream;
+
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        //Twitch twitch = new Twitch();
+        //FileController.writeToFile(twitch);
+        FileController.readFromFile();
     }
 }
