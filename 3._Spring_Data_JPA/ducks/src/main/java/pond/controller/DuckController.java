@@ -24,6 +24,9 @@ public class DuckController {
     @Autowired
     private PondRepository pondRepository;
 
+    @Autowired
+    private PapaGooseRepository papaGooseRepository;
+
     @GetMapping(path = "/add")
     public @ResponseBody String addDuck(@RequestParam String name) {
         if (name.equals("") ||  name.length() >= 255) {
@@ -63,8 +66,8 @@ public class DuckController {
 
 
     @GetMapping(path = "/goose_pimping")
-    public @ResponseBody String pimpMyGoose(@RequestParam String age) {
-        Duck foundDuck = duckRepository.findByName("ducksie1");
+    public @ResponseBody String pimpMyGoose(@RequestParam String age, @RequestParam String name) {
+        Duck foundDuck = duckRepository.findByName(name);
 
         if (foundDuck == null) {
             return "Sorry, honey. No ducks found.";
@@ -74,9 +77,14 @@ public class DuckController {
 
         foundDuck.setSugarGoose(papaGoose);
 
+        ArrayList<Duck> ducks = new ArrayList<>();
+        ducks.add(foundDuck);
+        papaGoose.setDucks(ducks);
 
+        papaGooseRepository.save(papaGoose);
+        duckRepository.save(foundDuck);
 
-        return null;
+        return "Duck was connected to its papa goose. Well done.";
     }
 
 

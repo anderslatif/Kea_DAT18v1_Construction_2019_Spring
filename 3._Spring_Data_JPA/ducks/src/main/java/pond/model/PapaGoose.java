@@ -13,7 +13,7 @@ public class PapaGoose {
 
     private Integer age;
 
-    @OneToMany(mappedBy = "sugarGoose", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sugarGoose")
     private List<Duck> ducks = new ArrayList<>();
 
     public void setDucks(List<Duck> ducks) {
