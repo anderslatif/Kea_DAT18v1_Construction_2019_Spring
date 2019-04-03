@@ -32,4 +32,6 @@ public class DuckController {
         return duckRepository.findAll();
     }
 
+
+
 }
