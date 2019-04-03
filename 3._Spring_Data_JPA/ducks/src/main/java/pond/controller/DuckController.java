@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pond.model.Duck;
-import pond.model.DuckRepository;
-import pond.model.Pond;
-import pond.model.PondRepository;
+import pond.model.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -65,6 +62,22 @@ public class DuckController {
     }
 
 
+    @GetMapping(path = "/goose_pimping")
+    public @ResponseBody String pimpMyGoose(@RequestParam String age) {
+        Duck foundDuck = duckRepository.findByName("ducksie1");
+
+        if (foundDuck == null) {
+            return "Sorry, honey. No ducks found.";
+        }
+
+        PapaGoose papaGoose = new PapaGoose(Integer.parseInt(age));
+
+        foundDuck.setSugarGoose(papaGoose);
+
+
+
+        return null;
+    }
 
 
 }

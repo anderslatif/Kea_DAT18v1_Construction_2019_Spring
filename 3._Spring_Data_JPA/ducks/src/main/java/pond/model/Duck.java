@@ -25,6 +25,18 @@ public class Duck {
     )
     private Set<Pond> favoritePonds = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn
+    private PapaGoose sugarGoose;
+
+    public PapaGoose getSugarGoose() {
+        return sugarGoose;
+    }
+
+    public void setSugarGoose(PapaGoose sugarGoose) {
+        this.sugarGoose = sugarGoose;
+    }
+
     public Set<Pond> getFavoritePonds() {
         return favoritePonds;
     }

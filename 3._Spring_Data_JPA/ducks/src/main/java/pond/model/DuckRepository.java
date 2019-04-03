@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface DuckRepository extends CrudRepository<Duck, Integer> {
-    List<Duck> findByName(String name);
+    Duck findByName(String name);
 }
