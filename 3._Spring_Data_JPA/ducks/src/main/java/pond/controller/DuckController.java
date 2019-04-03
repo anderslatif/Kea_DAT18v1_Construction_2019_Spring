@@ -1,4 +1,4 @@
-package pond;
+package pond.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pond.model.Duck;
+import pond.model.DuckRepository;
+import pond.model.Pond;
+import pond.model.PondRepository;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping(path = "/quack")
@@ -14,6 +23,9 @@ public class DuckController {
 
     @Autowired
     private DuckRepository duckRepository;
+
+    @Autowired
+    private PondRepository pondRepository;
 
     @GetMapping(path = "/add")
     public @ResponseBody String addDuck(@RequestParam String name) {
@@ -31,6 +43,27 @@ public class DuckController {
     public @ResponseBody Iterable<Duck> getDucks() {
         return duckRepository.findAll();
     }
+
+    @GetMapping(path = "/addDuckToPond")
+    public @ResponseBody String addFavoritePond(@RequestParam String name, @RequestParam String location) {
+        Duck duck = new Duck();
+        duck.setName(name);
+
+        Pond pond = new Pond();
+        pond.setLocation(location);
+
+        duckRepository.save(duck);
+
+        duck.getFavoritePonds().add(pond);
+
+        pond.getDucks().add(duck);
+
+
+        pondRepository.save(pond);
+
+        return "Saved a duck to the pond";
+    }
+
 
 
 
