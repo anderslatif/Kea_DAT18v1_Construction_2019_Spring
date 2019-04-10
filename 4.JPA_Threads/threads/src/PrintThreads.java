@@ -29,7 +29,7 @@ public class PrintThreads extends Thread {
     public void run() {
         char c;
 
-        synchronized (this) {
+        synchronized (lock) {
             for (int i = 0; i < sentence.length(); i++) {
                 myPrintMethod(sentence.charAt(i));
             }
