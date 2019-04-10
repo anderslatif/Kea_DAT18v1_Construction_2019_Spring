@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 public class CatController {
 
-    @GetMapping(name = "/")
+    @GetMapping(name = "/profile")
     public String catGreeting() {
-        return "meow";
+        return "index.html";
     }
 
 }

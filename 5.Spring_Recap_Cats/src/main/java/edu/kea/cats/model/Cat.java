@@ -11,6 +11,7 @@ public class Cat {
     private Integer id;
 
     private int age;
+
     private String name;
 
     public int getAge() {
