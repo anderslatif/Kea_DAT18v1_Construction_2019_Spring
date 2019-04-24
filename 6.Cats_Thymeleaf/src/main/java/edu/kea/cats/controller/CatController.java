@@ -1,5 +1,6 @@
 package edu.kea.cats.controller;
 
+import edu.kea.cats.model.Cat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,16 +17,9 @@ public class CatController {
 
     @GetMapping("/profile")
     public String showProfile(Model model) {
-        return "profile/profile-page.html";
+        Cat modelCat = new Cat(2, "Karl Marx", "");
+        model.addAttribute("cat", modelCat);
+        return "profile/profile.html";
     }
-
-    @GetMapping("/test")
-    public @ResponseBody String tryTest() {
-        return "test works... nice one  ";
-    }
-
 
 }
-
-
-
