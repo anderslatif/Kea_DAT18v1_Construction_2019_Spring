@@ -1,14 +1,11 @@
 package edu.kea.cats.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import edu.kea.cats.model.Cat;
 import edu.kea.cats.model.CatImageResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -22,11 +19,22 @@ public class CatController {
         return "index.html";
     }
 
+    @GetMapping("/cat-form")
+    public String createCat(){
+        return "cat-form.html";
+    }
+
     @GetMapping("/profile")
     public String showProfile(Model model) {
         Cat modelCat = new Cat(2, "Karl Marx", "");
         model.addAttribute("cat", modelCat);
         return "profile/profile.html";
+    }
+
+    @PostMapping("/cat")
+    public @ResponseBody Object createCat(@RequestBody Cat body) {
+        System.out.println(body);
+        return body;
     }
 
     public String getURL() {
